@@ -22,7 +22,7 @@ import javax.persistence.Query;
 public class ProdutoServiceJPA implements ProdutoService {
 
     private EntityManagerFactory emFactory
-            = Persistence.createEntityManagerFactory("LojinhaPU");
+            = Persistence.createEntityManagerFactory("persistence");
 
     @Override
     public List<Produto> listar(int offset, int quantidade) {

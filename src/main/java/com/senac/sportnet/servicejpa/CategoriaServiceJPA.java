@@ -21,7 +21,7 @@ import javax.persistence.Query;
 public class CategoriaServiceJPA implements CategoriaService {
 
     private EntityManagerFactory emFactory
-            = Persistence.createEntityManagerFactory("LojinhaPU");
+            = Persistence.createEntityManagerFactory("persistence");
 
     @Override
     public List<Categoria> listar() {
