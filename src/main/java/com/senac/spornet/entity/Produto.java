@@ -32,17 +32,17 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "TB_PRODUTO")
 @NamedQueries({
-  @NamedQuery(name = "Produto.listarPorCategoria",
-          query = "SELECT DISTINCT p FROM Produto p " // Espaço 
-          + "LEFT JOIN FETCH p.categorias "           // antes
-          + "LEFT JOIN FETCH p.imagens "              // das aspas
-          + "INNER JOIN p.categorias c "
-          + "WHERE c.id = :idCategoria"),
-  @NamedQuery(name = "Produto.obter",
-          query = "SELECT DISTINCT p FROM Produto p "
-          + "LEFT JOIN FETCH p.categorias "
-          + "LEFT JOIN FETCH p.imagens "
-          + "WHERE p.id = :idProduto")
+    @NamedQuery(name = "Produto.listarPorCategoria",
+            query = "SELECT DISTINCT p FROM Produto p " // Espaço 
+            + "LEFT JOIN FETCH p.categorias " // antes
+            + "LEFT JOIN FETCH p.imagens " // das aspas
+            + "INNER JOIN p.categorias c "
+            + "WHERE c.id = :idCategoria"),
+    @NamedQuery(name = "Produto.obter",
+            query = "SELECT DISTINCT p FROM Produto p "
+            + "LEFT JOIN FETCH p.categorias "
+            + "LEFT JOIN FETCH p.imagens "
+            + "WHERE p.id = :idProduto")
 })
 public class Produto implements Serializable {
 
@@ -69,7 +69,6 @@ public class Produto implements Serializable {
 //    //masculino ou femino
 //    @Column(name = "GN_PRODUTO")
 //    private String genero;
-
     @Column(name = "VL_PRODUTO", precision = 12,
             scale = 2, nullable = false)
     private float preco;
@@ -77,6 +76,9 @@ public class Produto implements Serializable {
     @Column(name = "DT_CADASTRO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
+
+    @Column(name = "Quantidade", nullable = false)
+    private String quantidade;
 
     @ManyToMany
     @JoinTable(name = "TB_PRODUTO_CATEGORIA",
@@ -167,7 +169,6 @@ public class Produto implements Serializable {
 //    public String getCor() {
 //        return cor;
 //    }
-
 //    public void setCor(String cor) {
 //        this.cor = cor;
 //    }
@@ -175,7 +176,6 @@ public class Produto implements Serializable {
 //    public int getQtdAtual() {
 //        return qtdAtual;
 //    }
-
 //    public void setQtdAtual(int qtdAtual) {
 //        this.qtdAtual = qtdAtual;
 //    }
@@ -187,7 +187,6 @@ public class Produto implements Serializable {
 //    public void setGenero(String genero) {
 //        this.genero = genero;
 //    }
-
     public List<Categoria> getCategorias() {
         return categorias;
     }
@@ -238,5 +237,15 @@ public class Produto implements Serializable {
         }
         return true;
     }
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    
 
 }

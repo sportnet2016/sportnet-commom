@@ -10,6 +10,7 @@ import com.senac.spornet.entity.ImagemProduto;
 import com.senac.spornet.entity.Produto;
 import com.senac.sportnet.service.CategoriaService;
 import com.senac.sportnet.service.ProdutoService;
+import com.senac.sportnet.web.entity.ProdutoQuantidade;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -105,6 +107,13 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
   public void remover(long idProduto) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+    @Override
+    public void finalizarCompra(Set<ProdutoQuantidade> produto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
 }
 

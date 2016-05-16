@@ -12,7 +12,11 @@ package com.senac.sportnet.servicejpa;
 import com.senac.spornet.entity.Categoria;
 import com.senac.spornet.entity.Produto;
 import com.senac.sportnet.service.ProdutoService;
+import com.senac.sportnet.web.entity.ProdutoQuantidade;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -58,7 +62,20 @@ public class ProdutoServiceJPA implements ProdutoService {
 
     @Override
     public Produto obter(long idProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emFactory.createEntityManager();
+
+        try {
+            Query query = em.createQuery("SELECT p FROM Produto p WHERE p.id = " + idProduto + ""
+            );
+            List<Produto> resultados = query.getResultList();
+            Produto produto = new Produto();
+            for (Produto p : resultados) {
+                produto = p;
+            }
+            return produto;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
@@ -117,12 +134,39 @@ public class ProdutoServiceJPA implements ProdutoService {
             transacao.begin();
             Produto p = em.find(Produto.class, idProduto);
             em.remove(p);
+
             transacao.commit();
         } catch (Exception e) {
             transacao.rollback();
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public void finalizarCompra(Set<ProdutoQuantidade> produto) {
+        EntityManager em = emFactory.createEntityManager();
+        EntityTransaction transacao = em.getTransaction();
+        List<Produto> result = new ArrayList<>();
+        try {
+            transacao.begin();
+            for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {
+                ProdutoQuantidade produtosVendidos = iter.next();
+
+                Query query = em.createQuery("UPDATE Produto p set Quantidade = Quantidade -"
+                        + produtosVendidos.getQuantidade()
+                        + " WHERE p.id = " + produtosVendidos.produto.getId());
+                
+                result = query.getResultList();
+            }
+            for (Produto p : result) {
+                em.persist(p);
+            }
+            transacao.commit();
+        } finally {
+            em.close();
+        }
+
     }
 
 }
