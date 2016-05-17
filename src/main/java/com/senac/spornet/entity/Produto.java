@@ -63,8 +63,8 @@ public class Produto implements Serializable {
 //    @Column(name = "COR_PRODUTO")
 //    private String cor;
 //
-//    @Column(name = "QTD_ATUAL")
-//    private int qtdAtual;
+    @Column(name = "QTD_ATUAL")
+    private int qtdAtual;
 //
 //    //masculino ou femino
 //    @Column(name = "GN_PRODUTO")
@@ -77,8 +77,8 @@ public class Produto implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
 
-    @Column(name = "Quantidade", nullable = false)
-    private String quantidade;
+//    @Column(name = "Quantidade", nullable = false)
+//    private String quantidade;
 
     @ManyToMany
     @JoinTable(name = "TB_PRODUTO_CATEGORIA",
@@ -237,14 +237,24 @@ public class Produto implements Serializable {
         }
         return true;
     }
+//
+//    public String getQuantidade() {
+//        return quantidade;
+//    }
+//
+//    public void setQuantidade(String quantidade) {
+//        this.quantidade = quantidade;
+//    }
+//    
 
-    public String getQuantidade() {
-        return quantidade;
+    public int getQtdAtual() {
+        return qtdAtual;
     }
 
-    public void setQuantidade(String quantidade) {
-        this.quantidade = quantidade;
+    public void setQtdAtual(int qtdAtual) {
+        this.qtdAtual = qtdAtual;
     }
+    
     
     
 
