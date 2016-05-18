@@ -255,7 +255,13 @@ public class Produto implements Serializable {
         this.qtdAtual = qtdAtual;
     }
     
-    
+    public String getImagemPrincipal(){
+        if(imagens == null || imagens.size() <= 0){
+            return "";
+        }
+        
+        return imagens.get(0).getNomeArquivo();
+    }
     
 
 }
