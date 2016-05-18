@@ -153,15 +153,19 @@ public class ProdutoServiceJPA implements ProdutoService {
             for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {
                 ProdutoQuantidade produtosVendidos = iter.next();
 
-                Query query = em.createQuery("UPDATE Produto p set Quantidade = Quantidade -"
-                        + produtosVendidos.getQuantidade()
-                        + " WHERE p.id = " + produtosVendidos.produto.getId());
-                
+//                Query query = em.createQuery("UPDATE Produto p set p.qtdAtual= p.qtdAtual -"
+//                        + produtosVendidos.getQuantidade()
+//                        + " WHERE p.id = " + produtosVendidos.produto.getId());
+                Query query = em.createQuery("Select p from Produto p where p.id= :idProduto");
+                query.setParameter("idProduto", produtosVendidos.produto.getId());
                 result = query.getResultList();
+                for (Produto p : result) {
+                    int q = p.getQtdAtual() - produtosVendidos.getQuantidade();
+                    p.setQtdAtual(q);
+                    em.merge(p);
+                }
             }
-            for (Produto p : result) {
-                em.persist(p);
-            }
+
             transacao.commit();
         } finally {
             em.close();
