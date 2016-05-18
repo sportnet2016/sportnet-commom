@@ -255,6 +255,14 @@ public class Produto implements Serializable {
         this.qtdAtual = qtdAtual;
     }
     
+    //metodo que pega a primeira imagem da lista de produtos e torna como principal para mostrar na lista (listaTenis.xml)
+    public String getImagemPrincipal(){
+        if (imagens == null || imagens.size() <= 0) {
+            return "";
+        }
+        return imagens.get(0).getNomeArquivo();
+    }
+    
     
     
 
