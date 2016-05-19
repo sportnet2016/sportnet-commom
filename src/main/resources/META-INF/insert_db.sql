@@ -10,8 +10,8 @@ INSERT INTO TB_PRODUTO (NM_PRODUTO, DS_PRODUTO, DT_CADASTRO, VL_PRODUTO, QTD_ATU
 
 INSERT INTO TB_IMAGEM (NM_IMAGEM, DS_IMAGEM, ID_PRODUTO) VALUES 
 ('tenis1.png', 'Tenis Nike 1', 1),
-('tenis2.png', 'Tenis Nike 2', 1),
-('tenis3.png', 'Tenis Asics 3', 1);
+('tenis2.png', 'Tenis Nike 2', 2),
+('tenis3.png', 'Tenis Asics 3', 3);
 
 INSERT INTO TB_PRODUTO_CATEGORIA (ID_PRODUTO, ID_CATEGORIA) VALUES 
 (1, 1),
