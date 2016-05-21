@@ -57,11 +57,11 @@ public class Produto implements Serializable {
     @Column(name = "DS_PRODUTO")
     private String descricao;
 
-//    @Column(name = "TM_PRODUTO")
-//    private String tamanho;
-//
-//    @Column(name = "COR_PRODUTO")
-//    private String cor;
+    @Column(name = "TM_PRODUTO")
+    private String tamanho;
+
+    @Column(name = "COR_PRODUTO")
+    private String cor;
 //
     @Column(name = "QTD_ATUAL")
     private int qtdAtual;
