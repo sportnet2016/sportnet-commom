@@ -10,11 +10,15 @@ package com.senac.sportnet.servicejpa;
  * @author nliggia-ibm
  */
 import com.senac.spornet.entity.Categoria;
+import com.senac.spornet.entity.ItensVenda;
 import com.senac.spornet.entity.Produto;
+import com.senac.spornet.entity.Venda;
 import com.senac.sportnet.service.ProdutoService;
 import com.senac.sportnet.web.entity.ProdutoQuantidade;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
@@ -148,6 +152,10 @@ public class ProdutoServiceJPA implements ProdutoService {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         List<Produto> result = new ArrayList<>();
+        List<Venda> resultVendas = new ArrayList<>();
+        Set<ProdutoQuantidade> produtosV = produto;
+        long ultimaVenda=0;
+        float total=0;
         try {
             transacao.begin();
             for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {
@@ -162,10 +170,31 @@ public class ProdutoServiceJPA implements ProdutoService {
                 for (Produto p : result) {
                     int q = p.getQtdAtual() - produtosVendidos.getQuantidade();
                     p.setQtdAtual(q);
+                    total = total + p.getPreco();
                     em.merge(p);
                 }
             }
-
+            Venda venda = new Venda();
+            venda.setIdCliente(1);
+            venda.setDtVenda(new Date());
+            venda.setVlTotal(total);
+            em.persist(venda);
+            
+            Query qVenda = em.createQuery("Select v from Venda v");
+            resultVendas = qVenda.getResultList();
+            for (Venda v : resultVendas) {
+                ultimaVenda = v.getIdVenda();
+            }
+            ItensVenda iv = new ItensVenda();
+            iv.setIdVenda(ultimaVenda);
+            for (Iterator<ProdutoQuantidade> it = produtosV.iterator(); it.hasNext();) {
+                ProdutoQuantidade p = it.next();
+                iv.setIdProduto(p.produto.getId());
+                em.persist(iv);
+                em.flush();
+                em.clear();
+            }
+            
             transacao.commit();
         } finally {
             em.close();
