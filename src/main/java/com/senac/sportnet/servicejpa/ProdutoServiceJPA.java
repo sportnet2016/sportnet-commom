@@ -148,14 +148,13 @@ public class ProdutoServiceJPA implements ProdutoService {
     }
 
     @Override
-    public void finalizarCompra(Set<ProdutoQuantidade> produto) {
+    public void finalizarCompra(Set<ProdutoQuantidade> produto,float total) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         List<Produto> result = new ArrayList<>();
         List<Venda> resultVendas = new ArrayList<>();
         Set<ProdutoQuantidade> produtosV = produto;
         long ultimaVenda=0;
-        float total=0;
         try {
             transacao.begin();
             for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {

@@ -31,5 +31,5 @@ public interface ProdutoService {
 
     public void remover(long idProduto);
 
-    public void finalizarCompra(Set<ProdutoQuantidade> produto);
+    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total);
 }
