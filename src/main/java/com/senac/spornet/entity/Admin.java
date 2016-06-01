@@ -26,6 +26,11 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USUARIO_ADMIN")
+@NamedQueries({
+    @NamedQuery(name = "Admin.autenticacao",
+            query = "SELECT DISTINCT p FROM Admin p "
+            + "WHERE p.login = :login")
+})
 public class Admin implements Serializable {
 
     @Id
