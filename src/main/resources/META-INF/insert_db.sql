@@ -29,7 +29,11 @@ INSERT INTO TB_IMAGEM (NM_IMAGEM, DS_IMAGEM, ID_PRODUTO) VALUES
 -- SELECT * fROM TB_MARCA
 -- SELECT * fROM TB_PRODUTO
 
--- Usuario
+-- cliente
 INSERT INTO USUARIO_CLIENTE (NOME, CPF, SEXO, EMAIL, LOGIN, SENHA, ENDERECO) VALUES 
 ('UsuarioCliente', '12345678123', 'fem', 'email@email.com', 'login', 'senha', 'endereco');
+
+-- admin
+INSERT INTO USUARIO_ADMIN (NOME, EMAIL, LOGIN, SENHA) VALUES 
+('UsuarioAdmin', 'email@email.com', 'login', 'senha');
 
