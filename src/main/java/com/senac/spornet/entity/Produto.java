@@ -67,8 +67,8 @@ public class Produto implements Serializable {
     private int qtdAtual;
 //
 //    //masculino ou femino
-//    @Column(name = "GN_PRODUTO")
-//    private String genero;
+    @Column(name = "GN_PRODUTO")
+    private String genero;
     @Column(name = "VL_PRODUTO", precision = 12,
             scale = 2, nullable = false)
     private float preco;
@@ -158,35 +158,35 @@ public class Produto implements Serializable {
         this.dtCadastro = dtCadastro;
     }
 
-//    public String getTamanho() {
-//        return tamanho;
-//    }
-//
-//    public void setTamanho(String tamanho) {
-//        this.tamanho = tamanho;
-//    }
-//
-//    public String getCor() {
-//        return cor;
-//    }
-//    public void setCor(String cor) {
-//        this.cor = cor;
-//    }
-//
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
 //    public int getQtdAtual() {
 //        return qtdAtual;
 //    }
 //    public void setQtdAtual(int qtdAtual) {
 //        this.qtdAtual = qtdAtual;
 //    }
-//
-//    public String getGenero() {
-//        return genero;
-//    }
-//
-//    public void setGenero(String genero) {
-//        this.genero = genero;
-//    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
     public List<Categoria> getCategorias() {
         return categorias;
     }

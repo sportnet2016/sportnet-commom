@@ -69,13 +69,9 @@ public class ProdutoServiceJPA implements ProdutoService {
         EntityManager em = emFactory.createEntityManager();
 
         try {
-            Query query = em.createQuery("SELECT p FROM Produto p WHERE p.id = " + idProduto + ""
-            );
-            List<Produto> resultados = query.getResultList();
-            Produto produto = new Produto();
-            for (Produto p : resultados) {
-                produto = p;
-            }
+            Query query = em.createNamedQuery("Produto.obter").setParameter("idProduto", idProduto);
+            Produto produto = (Produto) query.getSingleResult();
+            
             return produto;
         } finally {
             em.close();
