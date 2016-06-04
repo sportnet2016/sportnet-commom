@@ -53,6 +53,9 @@ public class Produto implements Serializable {
 
     @Column(name = "NM_PRODUTO", nullable = false)
     private String nome;
+    
+    @Column(name = "NM_MARCA", nullable = false)
+    private String marca;
 
     @Column(name = "DS_PRODUTO")
     private String descricao;
@@ -254,6 +257,16 @@ public class Produto implements Serializable {
     public void setQtdAtual(int qtdAtual) {
         this.qtdAtual = qtdAtual;
     }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+    
     
     //metodo que pega a primeira imagem da lista de produtos e torna como principal para mostrar na lista (listaTenis.xml)
     public String getImagemPrincipal(){

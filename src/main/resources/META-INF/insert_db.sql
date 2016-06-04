@@ -1,18 +1,18 @@
-INSERT INTO TB_MARCA(NOME_MARCA)
-VALUES ('Nike');
-INSERT INTO TB_CATEGORIA(NM_CATEGORIA)
-VALUES ('Tenis');
+--INSERT INTO TB_MARCA(NOME_MARCA)
+--VALUES ('Nike');
+--INSERT INTO TB_CATEGORIA(NM_CATEGORIA)
+--VALUES ('Tenis');
 
 INSERT INTO TB_CATEGORIA (NM_CATEGORIA) VALUES
 ('Calçados'),
 ('Roupas'),
 ('Esportes');
 
-INSERT INTO TB_PRODUTO (NM_PRODUTO,ID_MARCA, GN_PRODUTO, DS_PRODUTO,TM_PRODUTO,COR_PRODUTO, DT_CADASTRO, VL_PRODUTO, QTD_ATUAL)
+INSERT INTO TB_PRODUTO (NM_PRODUTO,NM_MARCA, GN_PRODUTO, DS_PRODUTO,TM_PRODUTO,COR_PRODUTO, DT_CADASTRO, VL_PRODUTO, QTD_ATUAL)
 VALUES
-('Tenis Nike Basquete', 1,'masculino', 'Indicado para jogar basquete','Grande','preto', CURRENT_TIMESTAMP, 100.00, 10),
-('Tenis Nike Casual', 1,'masculino', 'Indicado para andar','medio','azul', CURRENT_TIMESTAMP, 100.00, 10),
-('Tenis Asics Sport', 1,'masculino', 'Indicado para balada huehue','Grande','preto', CURRENT_TIMESTAMP, 100.00, 10);
+('Tenis Nike Basquete', 'Nike','masculino', 'Indicado para jogar basquete','Grande','preto', CURRENT_TIMESTAMP, 100.00, 10),
+('Tenis Nike Casual', 'Nike','masculino', 'Indicado para andar','medio','azul', CURRENT_TIMESTAMP, 100.00, 10),
+('Tenis Asics Sport', 'Asics','masculino', 'Indicado para balada huehue','Grande','preto', CURRENT_TIMESTAMP, 100.00, 10);
 
 
 INSERT INTO TB_IMAGEM (NM_IMAGEM, DS_IMAGEM, ID_PRODUTO) VALUES 
