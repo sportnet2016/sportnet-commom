@@ -27,6 +27,7 @@ import com.senac.spornet.entity.Cliente;
 import com.senac.sportnet.service.UsuarioClienteService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -38,7 +39,7 @@ public class UsuarioClienteServiceJPA implements UsuarioClienteService {
 
     private EntityManagerFactory emFactory
             = Persistence.createEntityManagerFactory("persistence");
-
+    Cliente result;
     @Override
     public Cliente Validar(String nome, String senha) {
         EntityManager em = emFactory.createEntityManager();
@@ -47,9 +48,12 @@ public class UsuarioClienteServiceJPA implements UsuarioClienteService {
             Query query = em.createQuery("Select u from Cliente u where u.login = :login and u.senha= :password");
             query.setParameter("login", nome);
             query.setParameter("password", senha);
-            Cliente result = (Cliente) query.getSingleResult();
+            result = (Cliente) query.getSingleResult();
             return result;
-        }finally{
+        }catch(NoResultException e){
+            return null;
+        }
+            finally{
             em.close();
         }
         
