@@ -9,66 +9,144 @@ package com.senac.spornet.entity;
  *
  * @author nliggia-ibm
  */
-
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "USUARIO_CLIENTE")
 
 public class Cliente implements Serializable {
 
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CLIENTE")
+    private Long id;
 
-  private String nome;
+    @Column(name = "NOME", nullable = false)
+    private String nome;
 
-  private Date dtCadastro;
+    @Column(name = "CPF", nullable = false)
+    private String cpf;
 
-  private Date dtNascimento;
+    @Column(name = "SEXO", nullable = false)
+    private String sexo;
 
-  public Cliente() {
-  }
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
 
-  public Cliente(Long id, String nome, Date dtCadastro, Date dtNascimento) {
-    this.id = id;
-    this.nome = nome;
-    this.dtCadastro = dtCadastro;
-    this.dtNascimento = dtNascimento;
-  }
+    @Column(name = "LOGIN", nullable = false)
+    private String login;
 
-  public Long getId() {
-    return id;
-  }
+    @Column(name = "SENHA", nullable = false)
+    private String senha;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    @Column(name = "ENDERECO", nullable = false)
+    private String endereco;
 
-  public String getNome() {
-    return nome;
-  }
+    @Column(name = "DT_NASCIMENTO", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtNascimento;
 
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
+    public Cliente() {
+    }
 
-  public Date getDtCadastro() {
-    return dtCadastro;
-  }
+    public Cliente(Long id, String nome, Date dtNascimento, String cpf, String sexo,
+            String email, String login, String senha, String endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.email = email;
+        this.login = login;
+        this.senha = senha;
+        this.endereco = endereco;
+        this.dtNascimento = dtNascimento;
+    }
 
-  public void setDtCadastro(Date dtCadastro) {
-    this.dtCadastro = dtCadastro;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public Date getDtNascimento() {
-    return dtNascimento;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public void setDtNascimento(Date dtNascimento) {
-    this.dtNascimento = dtNascimento;
-  }
+    public String getNome() {
+        return nome;
+    }
 
-  @Override
-  public String toString() {
-    return "Cliente{" + "id=" + id + ", nome=" + nome + ", dtCadastro=" + dtCadastro + ", dtNascimento=" + dtNascimento + '}';
-  }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Date getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(Date dtNascimento) {
+        this.dtNascimento = dtNascimento;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento
+                + ", sexo=" + sexo + ", cpf=" + cpf + ", endereco=" + endereco + ", email=" + email + ", login=" + login + ", senha=" + senha + '}';
+    }
 
 }
-
