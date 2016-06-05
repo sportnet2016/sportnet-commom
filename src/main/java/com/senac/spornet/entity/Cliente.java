@@ -48,8 +48,26 @@ public class Cliente implements Serializable {
     @Column(name = "SENHA", nullable = false)
     private String senha;
 
-    @Column(name = "ENDERECO", nullable = false)
-    private String endereco;
+    @Column(name = "END_RUA", nullable = false)
+    private String endRua;
+
+    @Column(name = "END_NUM", nullable = false)
+    private int endNum;
+
+    @Column(name = "END_COMPLEMENTO")
+    private String endComplemento;
+    
+    @Column(name = "END_BAIRRO", nullable = false)
+    private String endBairro;
+    
+    @Column(name = "END_CEP", nullable = false)
+    private String endCep;
+    
+    @Column(name = "END_CIDADE", nullable = false)
+    private String endCidade;
+    
+    @Column(name = "END_ESTADO", nullable = false)
+    private String endEstado;
 
     @Column(name = "DT_NASCIMENTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,7 +77,7 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(Long id, String nome, Date dtNascimento, String cpf, String sexo,
-            String email, String login, String senha, String endereco) {
+            String email, String login, String senha, String endRua) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -67,7 +85,7 @@ public class Cliente implements Serializable {
         this.email = email;
         this.login = login;
         this.senha = senha;
-        this.endereco = endereco;
+        this.endRua = endRua;
         this.dtNascimento = dtNascimento;
     }
 
@@ -127,14 +145,6 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public Date getDtNascimento() {
         return dtNascimento;
     }
@@ -143,10 +153,68 @@ public class Cliente implements Serializable {
         this.dtNascimento = dtNascimento;
     }
 
+    public String getEndRua() {
+        return endRua;
+    }
+
+    public void setEndRua(String endRua) {
+        this.endRua = endRua;
+    }
+
+    public int getEndNum() {
+        return endNum;
+    }
+
+    public void setEndNum(int endNum) {
+        this.endNum = endNum;
+    }
+
+    public String getEndComplemento() {
+        return endComplemento;
+    }
+
+    public void setEndComplemento(String endComplemento) {
+        this.endComplemento = endComplemento;
+    }
+
+    public String getEndBairro() {
+        return endBairro;
+    }
+
+    public void setEndBairro(String endBairro) {
+        this.endBairro = endBairro;
+    }
+
+    public String getEndCep() {
+        return endCep;
+    }
+
+    public void setEndCep(String endCep) {
+        this.endCep = endCep;
+    }
+
+    public String getEndCidade() {
+        return endCidade;
+    }
+
+    public void setEndCidade(String endCidade) {
+        this.endCidade = endCidade;
+    }
+
+    public String getEndEstado() {
+        return endEstado;
+    }
+
+    public void setEndEstado(String endEstado) {
+        this.endEstado = endEstado;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento
-                + ", sexo=" + sexo + ", cpf=" + cpf + ", endereco=" + endereco + ", email=" + email + ", login=" + login + ", senha=" + senha + '}';
+                + ", sexo=" + sexo + ", cpf=" + cpf + ", endRua=" + endRua + ", email=" + email + ", login=" + login + ", senha=" + senha + '}';
     }
 
 }
