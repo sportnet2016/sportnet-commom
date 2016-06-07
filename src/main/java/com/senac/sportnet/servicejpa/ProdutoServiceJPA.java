@@ -144,7 +144,7 @@ public class ProdutoServiceJPA implements ProdutoService {
     }
 
     @Override
-    public void finalizarCompra(Set<ProdutoQuantidade> produto,float total) {
+    public void finalizarCompra(Set<ProdutoQuantidade> produto,float total, Long idUser) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         List<Produto> result = new ArrayList<>();
@@ -170,7 +170,7 @@ public class ProdutoServiceJPA implements ProdutoService {
                 }
             }
             Venda venda = new Venda();
-            venda.setIdCliente(1);
+            venda.setIdCliente(idUser);
             venda.setDtVenda(new Date());
             venda.setVlTotal(total);
             em.persist(venda);

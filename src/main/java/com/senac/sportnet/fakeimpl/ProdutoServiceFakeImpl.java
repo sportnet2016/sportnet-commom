@@ -109,7 +109,7 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
   }
 
     @Override
-    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total) {
+    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total, Long idUser) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
