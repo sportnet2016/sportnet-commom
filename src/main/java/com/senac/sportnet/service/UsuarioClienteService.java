@@ -23,12 +23,13 @@
  */
 package com.senac.sportnet.service;
 
-import com.senac.spornet.entity.Cliente;
+import com.senac.spornet.entity.Usuario;
 
 /**
  *
  * @author Eder Rodrigues
  */
 public interface UsuarioClienteService {
-    public Cliente Validar(String nome, String senha);
+    public Usuario Validar(String nome, String senha);
+    public boolean autorizar(Usuario usuario);
 }

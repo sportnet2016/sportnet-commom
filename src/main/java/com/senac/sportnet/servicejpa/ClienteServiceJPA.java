@@ -23,7 +23,7 @@
  */
 package com.senac.sportnet.servicejpa;
 
-import com.senac.spornet.entity.Cliente;
+import com.senac.spornet.entity.Usuario;
 import com.senac.sportnet.service.ClienteService;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -44,12 +44,12 @@ public class ClienteServiceJPA implements ClienteService {
 
 
     @Override
-    public Cliente obter(long idCliente) {
+    public Usuario obter(long idCliente) {
         EntityManager em = emFactory.createEntityManager();
 
         try {
             Query query = em.createNamedQuery("Cliente.obter").setParameter("idCliente", idCliente);
-            Cliente cliente = (Cliente) query.getSingleResult();
+            Usuario cliente = (Usuario) query.getSingleResult();
 
             return cliente;
         } finally {
@@ -58,7 +58,7 @@ public class ClienteServiceJPA implements ClienteService {
     }
 
     @Override
-    public void incluir(Cliente c) {
+    public void incluir(Usuario c) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         try {
@@ -75,7 +75,7 @@ public class ClienteServiceJPA implements ClienteService {
     }
 
     @Override
-    public void alterar(Cliente c) {
+    public void alterar(Usuario c) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         try {
@@ -97,7 +97,7 @@ public class ClienteServiceJPA implements ClienteService {
         EntityTransaction transacao = em.getTransaction();
         try {
             transacao.begin();
-            Cliente c = em.find(Cliente.class, idCliente);
+            Usuario c = em.find(Usuario.class, idCliente);
             em.remove(c);
 
             transacao.commit();

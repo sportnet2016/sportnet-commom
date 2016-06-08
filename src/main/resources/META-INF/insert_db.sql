@@ -29,14 +29,15 @@ INSERT INTO TB_PRODUTO_CATEGORIA (ID_PRODUTO, ID_CATEGORIA) VALUES
 -- SELECT * fROM TB_MARCA
 -- SELECT * fROM TB_PRODUTO
 -- SELECT * fROM TB_Venda
+-- SELECT * fROM USUARIO
 
 -- cliente
-INSERT INTO USUARIO_CLIENTE (NOME, CPF, SEXO, EMAIL, LOGIN, SENHA, DT_NASCIMENTO, END_RUA, END_NUM, END_COMPLEMENTO, END_BAIRRO, END_CEP, END_CIDADE, END_ESTADO) VALUES 
-('UsuarioCliente', '12345678123', 'fem', 'email@email.com', 'login', 'senha', '24/04/1980','Av Rio Branco', 122, 'Apto 44', 'Centro', '04515-030', 'Sao Paulo', 'SP');
-INSERT INTO USUARIO_CLIENTE (NOME, CPF, SEXO, EMAIL, LOGIN, SENHA, DT_NASCIMENTO, END_RUA, END_NUM, END_COMPLEMENTO, END_BAIRRO, END_CEP, END_CIDADE, END_ESTADO) VALUES 
-('UsuarioCliente', '12345678123', 'fem', 'email@email.com', 'eder', 'senha', '24/04/1980','Av Rio Branco', 122, 'Apto 44', 'Centro', '04515-030', 'Sao Paulo', 'SP');
+INSERT INTO USUARIO (NOME, CPF,PAPEL, SEXO, EMAIL, LOGIN, SENHA, DT_NASCIMENTO, END_RUA, END_NUM, END_COMPLEMENTO, END_BAIRRO, END_CEP, END_CIDADE, END_ESTADO) VALUES 
+('UsuarioCliente', '12345678123','cliente', 'fem', 'email@email.com', 'login', 'senha', '24/04/1980','Av Rio Branco', 122, 'Apto 44', 'Centro', '04515-030', 'Sao Paulo', 'SP');
+INSERT INTO USUARIO (NOME, CPF,PAPEL, SEXO, EMAIL, LOGIN, SENHA, DT_NASCIMENTO, END_RUA, END_NUM, END_COMPLEMENTO, END_BAIRRO, END_CEP, END_CIDADE, END_ESTADO) VALUES 
+('UsuarioCliente', '12345678123','Admin', 'masc', 'email@email.com', 'eder', 'senha', '24/04/1980','Av Rio Branco', 122, 'Apto 44', 'Centro', '04515-030', 'Sao Paulo', 'SP');
 
 -- admin
-INSERT INTO USUARIO_ADMIN (NOME, EMAIL, LOGIN, SENHA) VALUES 
-('UsuarioAdmin', 'email@email.com', 'login', 'senha');
+--INSERT INTO USUARIO_ADMIN (NOME, EMAIL, LOGIN, SENHA) VALUES 
+--('UsuarioAdmin', 'email@email.com', 'login', 'senha');
 

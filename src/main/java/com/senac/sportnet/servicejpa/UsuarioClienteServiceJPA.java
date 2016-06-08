@@ -23,7 +23,7 @@
  */
 package com.senac.sportnet.servicejpa;
 
-import com.senac.spornet.entity.Cliente;
+import com.senac.spornet.entity.Usuario;
 import com.senac.sportnet.service.UsuarioClienteService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,24 +39,48 @@ public class UsuarioClienteServiceJPA implements UsuarioClienteService {
 
     private EntityManagerFactory emFactory
             = Persistence.createEntityManagerFactory("persistence");
-    Cliente result;
+    Usuario result;
+    Usuario resultAutorizacao;
+
     @Override
-    public Cliente Validar(String nome, String senha) {
+    public Usuario Validar(String nome, String senha) {
         EntityManager em = emFactory.createEntityManager();
-        
-        try{
-            Query query = em.createQuery("Select u from Cliente u where u.login = :login and u.senha= :password");
+
+        try {
+            Query query = em.createQuery("Select u from Usuario u where u.login = :login and u.senha= :password");
             query.setParameter("login", nome);
             query.setParameter("password", senha);
-            result = (Cliente) query.getSingleResult();
+            result = (Usuario) query.getSingleResult();
             return result;
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
-        }
-            finally{
+        } finally {
             em.close();
         }
-        
+
+    }
+
+    @Override
+    public boolean autorizar(Usuario usuario) {
+        EntityManager em = emFactory.createEntityManager();
+        try {
+            Query query = em.createQuery("Select u  from Usuario u where u.login = :login and u.senha= :password");
+            query.setParameter("login", usuario.getNome());
+            query.setParameter("password", usuario.getSenha());
+            
+            resultAutorizacao = (Usuario) query.getSingleResult();
+            if(resultAutorizacao.getPapel().equalsIgnoreCase("admin")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(NoResultException e){
+         return false;
+        }
+            finally {
+            em.close();
+        }
+
     }
 
 }

@@ -21,7 +21,7 @@ public class Compra implements Serializable {
 
     private Date dtCompra;
 
-    private Cliente usuario;
+    private Usuario usuario;
 
     //atributo que verifica se a compra foi concluída ou não
     private boolean isConcluido;
@@ -32,7 +32,7 @@ public class Compra implements Serializable {
 
     }
 
-    public Compra(Long id, Date dtCompra, Cliente usuario) {
+    public Compra(Long id, Date dtCompra, Usuario usuario) {
         this.id = id;
         this.dtCriacao = new Date();
         this.dtCompra = dtCompra;
@@ -55,11 +55,11 @@ public class Compra implements Serializable {
         this.dtCompra = dataCompra;
     }
 
-    public Cliente getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Cliente usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

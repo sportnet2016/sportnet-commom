@@ -24,7 +24,7 @@
 package com.senac.sportnet.service;
 
 import com.senac.spornet.entity.Categoria;
-import com.senac.spornet.entity.Cliente;
+import com.senac.spornet.entity.Usuario;
 import com.senac.spornet.entity.Produto;
 import java.util.List;
 
@@ -34,11 +34,11 @@ import java.util.List;
  */
 public interface ClienteService {
 
-    public Cliente obter(long idCliente);
+    public Usuario obter(long idCliente);
 
-    public void incluir(Cliente c);
+    public void incluir(Usuario c);
 
-    public void alterar(Cliente c);
+    public void alterar(Usuario c);
 
     public void remover(long idCliente);
     

@@ -9,6 +9,8 @@ package com.senac.spornet.entity;
  *
  * @author nliggia-ibm
  */
+import com.senac.sportnet.service.UsuarioClienteService;
+import com.senac.sportnet.servicejpa.UsuarioClienteServiceJPA;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,13 +23,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "USUARIO_CLIENTE")
+@Table(name = "USUARIO")
 
-public class Cliente implements Serializable {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE")
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "NOME", nullable = false)
@@ -35,7 +37,10 @@ public class Cliente implements Serializable {
 
     @Column(name = "CPF", nullable = false)
     private String cpf;
-
+    
+    @Column(name="PAPEL", nullable = false)
+    private String papel;
+    
     @Column(name = "SEXO", nullable = false)
     private String sexo;
 
@@ -73,21 +78,29 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtNascimento;
 
-    public Cliente() {
+    public Usuario() {
     }
 
-    public Cliente(Long id, String nome, Date dtNascimento, String cpf, String sexo,
-            String email, String login, String senha, String endRua) {
+    public Usuario(Long id, String nome, String cpf, String papel, String sexo, String email, String login, String senha, String endRua, int endNum, String endComplemento, String endBairro, String endCep, String endCidade, String endEstado, Date dtNascimento) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+        this.papel = papel;
         this.sexo = sexo;
         this.email = email;
         this.login = login;
         this.senha = senha;
         this.endRua = endRua;
+        this.endNum = endNum;
+        this.endComplemento = endComplemento;
+        this.endBairro = endBairro;
+        this.endCep = endCep;
+        this.endCidade = endCidade;
+        this.endEstado = endEstado;
         this.dtNascimento = dtNascimento;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -113,6 +126,14 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
+    public String getPapel() {
+        return papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
+    }
+    
     public String getSexo() {
         return sexo;
     }
@@ -215,6 +236,11 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento
                 + ", sexo=" + sexo + ", cpf=" + cpf + ", endRua=" + endRua + ", email=" + email + ", login=" + login + ", senha=" + senha + '}';
+    }
+    
+    public boolean autorizado(Usuario usuario){
+        UsuarioClienteService u = new UsuarioClienteServiceJPA();
+        return u.autorizar(usuario);
     }
 
 }
