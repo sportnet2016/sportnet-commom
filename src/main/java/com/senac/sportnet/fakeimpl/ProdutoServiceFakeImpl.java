@@ -113,7 +113,9 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
+    @Override
+    public List<Produto> listarPorMarca(int offset, int quantidade, String marca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
-

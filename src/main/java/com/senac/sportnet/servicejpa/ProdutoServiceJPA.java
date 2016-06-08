@@ -63,6 +63,23 @@ public class ProdutoServiceJPA implements ProdutoService {
             em.close();
         }
     }
+    
+    @Override
+    public List<Produto> listarPorMarca(int offset, int quantidade, String marca) {
+        EntityManager em = emFactory.createEntityManager();
+        try {
+            Query query = em.createQuery("SELECT DISTINCT p FROM Produto p "
+                    + "LEFT JOIN FETCH p.categorias "
+                    + "LEFT JOIN FETCH p.imagens "
+                    + "WHERE p.marca = '" + marca + "'")
+                    .setFirstResult(offset)
+                    .setMaxResults(quantidade);
+            List<Produto> resultados = query.getResultList();
+            return resultados;
+        } finally {
+            em.close();
+        }
+    }
 
     @Override
     public Produto obter(long idProduto) {

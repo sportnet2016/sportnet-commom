@@ -22,6 +22,8 @@ public interface ProdutoService {
     public List<Produto> listar(int offset, int quantidade);
 
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade);
+    
+    public List<Produto> listarPorMarca(int offset, int quantidade, String marca);
 
     public Produto obter(long idProduto);
 
