@@ -9,6 +9,7 @@
     <class>com.senac.spornet.entity.Venda</class>
     <class>com.senac.spornet.entity.Cliente</class>
     <class>com.senac.spornet.entity.Marca</class>
+    <class>com.senac.spornet.entity.Usuario</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
