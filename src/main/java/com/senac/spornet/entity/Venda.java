@@ -25,11 +25,17 @@ package com.senac.spornet.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +46,21 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TB_VENDA")
-public class Venda implements Serializable{
+//@NamedQueries({
+//    @NamedQuery(name = "Venda.listarPorPeriodo",
+//            query = "SELECT DISTINCT p FROM Produto p " // Espaço 
+//            + "LEFT JOIN FETCH p.categorias " // antes
+//            + "LEFT JOIN FETCH p.imagens " // das aspas
+//            + "INNER JOIN p.categorias c "
+//            + "WHERE c.id = :idCategoria"),
+//    @NamedQuery(name = "Produto.obter",
+//            query = "SELECT DISTINCT p FROM Produto p "
+//            + "LEFT JOIN FETCH p.categorias "
+//            + "LEFT JOIN FETCH p.imagens "
+//            + "WHERE p.id = :idProduto")
+//})
+public class Venda implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_VENDA")
@@ -52,6 +72,18 @@ public class Venda implements Serializable{
     private Date DtVenda;
     @Column(name = "VL_TOTAL")
     private float VlTotal;
+
+    @ManyToMany
+    @JoinTable(name = "ITENS_VENDA",
+            joinColumns = {
+                @JoinColumn(name = "ID_VENDA")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_PRODUTO")
+            })
+
+    List<Produto> produtos;
+
 
     public Venda() {
     }
@@ -93,6 +125,14 @@ public class Venda implements Serializable{
 
     public void setVlTotal(float VlTotal) {
         this.VlTotal = VlTotal;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
     
     

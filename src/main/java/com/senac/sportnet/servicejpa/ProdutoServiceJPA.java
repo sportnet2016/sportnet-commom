@@ -168,8 +168,13 @@ public class ProdutoServiceJPA implements ProdutoService {
         List<Venda> resultVendas = new ArrayList<>();
         Set<ProdutoQuantidade> produtosV = produto;
         long ultimaVenda=0;
+            Venda venda = new Venda();
+            venda.setIdCliente(idUser);
+            venda.setDtVenda(new Date());
+        List<Produto> proVenda = new ArrayList<>();
         try {
             transacao.begin();
+            em.persist(venda);
             for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {
                 ProdutoQuantidade produtosVendidos = iter.next();
 
@@ -183,29 +188,28 @@ public class ProdutoServiceJPA implements ProdutoService {
                     int q = p.getQtdAtual() - produtosVendidos.getQuantidade();
                     p.setQtdAtual(q);
                     total = total + p.getPreco();
+                    proVenda.add(p);
                     em.merge(p);
                 }
             }
-            Venda venda = new Venda();
-            venda.setIdCliente(idUser);
-            venda.setDtVenda(new Date());
             venda.setVlTotal(total);
-            em.persist(venda);
-            
-            Query qVenda = em.createQuery("Select v from Venda v");
-            resultVendas = qVenda.getResultList();
-            for (Venda v : resultVendas) {
-                ultimaVenda = v.getIdVenda();
-            }
-            ItensVenda iv = new ItensVenda();
-            iv.setIdVenda(ultimaVenda);
-            for (Iterator<ProdutoQuantidade> it = produtosV.iterator(); it.hasNext();) {
-                ProdutoQuantidade p = it.next();
-                iv.setIdProduto(p.produto.getId());
-                em.persist(iv);
-                em.flush();
-                em.clear();
-            }
+            venda.setProdutos(proVenda);
+            em.merge(venda);
+//            
+//            Query qVenda = em.createQuery("Select v from Venda v");
+//            resultVendas = qVenda.getResultList();
+//            for (Venda v : resultVendas) {
+//                ultimaVenda = v.getIdVenda();
+//            }
+//            ItensVenda iv = new ItensVenda();
+//            iv.setIdVenda(ultimaVenda);
+//            for (Iterator<ProdutoQuantidade> it = produtosV.iterator(); it.hasNext();) {
+//                ProdutoQuantidade p = it.next();
+//                iv.setIdProduto(p.produto.getId());
+//                em.persist(iv);
+//                em.flush();
+//                em.clear();
+//            }
             
             transacao.commit();
         } finally {

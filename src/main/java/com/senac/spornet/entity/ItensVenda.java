@@ -35,17 +35,17 @@ import javax.persistence.Table;
  *
  * @author Eder Rodrigues
  */
-@Entity
-@Table(name="ITENS_VENDA")
+//@Entity
+//@Table(name="ITENS_VENDA")
 public class ItensVenda implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ITENS")
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "ID_ITENS")
     private Long IdItens;
-    @Column(name = "ID_PRODUTO")
+//    @Column(name = "ID_PRODUTO")
     private Long IdProduto;
-    @Column(name = "ID_VENDA")
+//    @Column(name = "ID_VENDA")
     private Long IdVenda;
 
     public ItensVenda() {
