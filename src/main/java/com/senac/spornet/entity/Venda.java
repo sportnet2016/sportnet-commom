@@ -44,6 +44,7 @@ import javax.persistence.TemporalType;
  *
  * @author Eder Rodrigues
  */
+
 @Entity
 @Table(name = "TB_VENDA")
 //@NamedQueries({
