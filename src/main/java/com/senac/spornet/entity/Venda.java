@@ -60,6 +60,10 @@ import javax.persistence.TemporalType;
 //            + "LEFT JOIN FETCH p.imagens "
 //            + "WHERE p.id = :idProduto")
 //})
+@NamedQueries({
+    @NamedQuery(name = "Venda.relatorio",
+            query= "SELECT v from Venda v INNER JOIN FETCH v.produtos")
+})
 public class Venda implements Serializable {
 
     @Id
