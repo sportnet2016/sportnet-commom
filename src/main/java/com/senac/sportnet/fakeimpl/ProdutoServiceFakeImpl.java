@@ -8,6 +8,7 @@ package com.senac.sportnet.fakeimpl;
 import com.senac.spornet.entity.Categoria;
 import com.senac.spornet.entity.ImagemProduto;
 import com.senac.spornet.entity.Produto;
+import com.senac.spornet.entity.Venda;
 import com.senac.sportnet.service.CategoriaService;
 import com.senac.sportnet.service.ProdutoService;
 import com.senac.sportnet.web.entity.ProdutoQuantidade;
@@ -115,6 +116,11 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
 
     @Override
     public List<Produto> listarPorMarca(int offset, int quantidade, String marca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Venda protocoloVenda() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

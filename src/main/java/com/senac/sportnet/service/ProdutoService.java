@@ -8,6 +8,7 @@ package com.senac.sportnet.service;
 
 import com.senac.spornet.entity.Categoria;
 import com.senac.spornet.entity.Produto;
+import com.senac.spornet.entity.Venda;
 import com.senac.sportnet.web.entity.ProdutoQuantidade;
 import java.util.List;
 import java.util.Set;
@@ -35,5 +36,5 @@ public interface ProdutoService {
 
     public void finalizarCompra(Set<ProdutoQuantidade> produto, float total, Long idUser);
     
-   // public List<Produto> relatorio();
+   public Venda protocoloVenda();
 }

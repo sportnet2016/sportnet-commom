@@ -63,7 +63,7 @@ public class ProdutoServiceJPA implements ProdutoService {
             em.close();
         }
     }
-    
+
     @Override
     public List<Produto> listarPorMarca(int offset, int quantidade, String marca) {
         EntityManager em = emFactory.createEntityManager();
@@ -88,7 +88,7 @@ public class ProdutoServiceJPA implements ProdutoService {
         try {
             Query query = em.createNamedQuery("Produto.obter").setParameter("idProduto", idProduto);
             Produto produto = (Produto) query.getSingleResult();
-            
+
             return produto;
         } finally {
             em.close();
@@ -161,16 +161,16 @@ public class ProdutoServiceJPA implements ProdutoService {
     }
 
     @Override
-    public void finalizarCompra(Set<ProdutoQuantidade> produto,float total, Long idUser) {
+    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total, Long idUser) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
         List<Produto> result = new ArrayList<>();
         List<Venda> resultVendas = new ArrayList<>();
         Set<ProdutoQuantidade> produtosV = produto;
-        long ultimaVenda=0;
-            Venda venda = new Venda();
-            venda.setIdCliente(idUser);
-            venda.setDtVenda(new Date());
+        long ultimaVenda = 0;
+        Venda venda = new Venda();
+        venda.setIdCliente(idUser);
+        venda.setDtVenda(new Date());
         List<Produto> proVenda = new ArrayList<>();
         try {
             transacao.begin();
@@ -210,8 +210,26 @@ public class ProdutoServiceJPA implements ProdutoService {
 //                em.flush();
 //                em.clear();
 //            }
-            
+
             transacao.commit();
+        } finally {
+            em.close();
+        }
+
+    }
+
+    @Override
+    public Venda protocoloVenda() {
+        EntityManager em = emFactory.createEntityManager();
+        try {
+
+            Query query = em.createQuery("Select v from Venda v");
+            List<Venda> vendas = query.getResultList();
+            Venda ultimaVenda = new Venda();
+            for (Venda v : vendas) {
+                ultimaVenda = v;
+            }
+            return ultimaVenda;
         } finally {
             em.close();
         }
