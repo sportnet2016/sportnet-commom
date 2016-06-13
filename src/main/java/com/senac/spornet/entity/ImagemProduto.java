@@ -6,6 +6,7 @@
 package com.senac.spornet.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,8 @@ public class ImagemProduto implements Serializable {
   @Column(name = "DS_IMAGEM")
   private String legenda;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.REMOVE)
+  //CascadeType.REMOVE
   @JoinColumn(name = "ID_PRODUTO", nullable = false)
   private Produto produto;
 
