@@ -31,5 +31,5 @@ import java.util.List;
  * @author Eder Rodrigues
  */
 public interface RelatorioService {
-    public List<Venda> mostrar();
+    public Venda mostrar(Long id);
 }

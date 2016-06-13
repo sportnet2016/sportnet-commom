@@ -40,13 +40,13 @@ public class RelatorioServiceJPA implements RelatorioService{
             = Persistence.createEntityManagerFactory("persistence");
 
     @Override
-    public List<Venda> mostrar() {
+    public Venda mostrar(Long id) {
         EntityManager em = emFactory.createEntityManager();
         
         try{
             Query query = em.createNamedQuery("Venda.relatorio");
-//            query.setParameter("id", 1);
-            List<Venda> result = query.getResultList();
+            query.setParameter("id", id);
+            Venda result = (Venda) query.getSingleResult();
             
             return result;
         }finally{
