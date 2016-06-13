@@ -70,8 +70,10 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_VENDA")
     private long IdVenda;
-    @Column(name = "ID_CLIENTE")
-    private long IdCliente;
+//    @Column(name = "ID_CLIENTE")
+//    private long IdCliente;
+    @Column(name = "NM_CLIENTE")
+    private String NomeCliente;
     @Column(name = "DT_VENDA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date DtVenda;
@@ -93,11 +95,19 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(long IdVenda, long IdCliente, Date DtVenda, float VlTotal) {
+//    public Venda(long IdVenda, long IdCliente, Date DtVenda, float VlTotal) {
+//        this.IdVenda = IdVenda;
+//        this.IdCliente = IdCliente;
+//        this.DtVenda = DtVenda;
+//        this.VlTotal = VlTotal;
+//    }
+    
+    public Venda(long IdVenda, String NomeCliente, Date DtVenda, float VlTotal, List<Produto> produtos) {
         this.IdVenda = IdVenda;
-        this.IdCliente = IdCliente;
+        this.NomeCliente = NomeCliente;
         this.DtVenda = DtVenda;
         this.VlTotal = VlTotal;
+        this.produtos = produtos;
     }
 
     public long getIdVenda() {
@@ -107,13 +117,20 @@ public class Venda implements Serializable {
     public void setIdVenda(long IdVenda) {
         this.IdVenda = IdVenda;
     }
-
-    public long getIdCliente() {
-        return IdCliente;
+    
+    public String getNomeCliente() {
+        return NomeCliente;
     }
 
-    public void setIdCliente(long IdCliente) {
-        this.IdCliente = IdCliente;
+//    public long getIdCliente() {
+//        return IdCliente;
+//    }
+//
+//    public void setIdCliente(long IdCliente) {
+//        this.IdCliente = IdCliente;
+//    }
+    public void setNomeCliente(String NomeCliente) {    
+        this.NomeCliente = NomeCliente;
     }
 
     public Date getDtVenda() {

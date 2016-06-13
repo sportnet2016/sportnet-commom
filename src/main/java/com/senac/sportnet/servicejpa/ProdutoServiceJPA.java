@@ -24,8 +24,10 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import org.eclipse.persistence.exceptions.QueryException;
 
 public class ProdutoServiceJPA implements ProdutoService {
 
@@ -161,15 +163,17 @@ public class ProdutoServiceJPA implements ProdutoService {
     }
 
     @Override
-    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total, Long idUser) {
+    public void finalizarCompra(Set<ProdutoQuantidade> produto, float total, String nmUser) {
         EntityManager em = emFactory.createEntityManager();
         EntityTransaction transacao = em.getTransaction();
+        
         List<Produto> result = new ArrayList<>();
         List<Venda> resultVendas = new ArrayList<>();
         Set<ProdutoQuantidade> produtosV = produto;
+        
         long ultimaVenda = 0;
         Venda venda = new Venda();
-        venda.setIdCliente(idUser);
+        venda.setNomeCliente(nmUser);
         venda.setDtVenda(new Date());
         List<Produto> proVenda = new ArrayList<>();
         try {
@@ -178,9 +182,6 @@ public class ProdutoServiceJPA implements ProdutoService {
             for (Iterator<ProdutoQuantidade> iter = produto.iterator(); iter.hasNext();) {
                 ProdutoQuantidade produtosVendidos = iter.next();
 
-//                Query query = em.createQuery("UPDATE Produto p set p.qtdAtual= p.qtdAtual -"
-//                        + produtosVendidos.getQuantidade()
-//                        + " WHERE p.id = " + produtosVendidos.produto.getId());
                 Query query = em.createQuery("Select p from Produto p where p.id= :idProduto");
                 query.setParameter("idProduto", produtosVendidos.produto.getId());
                 result = query.getResultList();
@@ -230,7 +231,8 @@ public class ProdutoServiceJPA implements ProdutoService {
                 ultimaVenda = v;
             }
             return ultimaVenda;
-        } finally {
+        }
+            finally {
             em.close();
         }
 
