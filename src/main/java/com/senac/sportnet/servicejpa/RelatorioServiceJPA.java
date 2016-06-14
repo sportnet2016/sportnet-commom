@@ -36,25 +36,39 @@ import javax.persistence.Query;
  *
  * @author Eder Rodrigues
  */
-public class RelatorioServiceJPA implements RelatorioService{
+public class RelatorioServiceJPA implements RelatorioService {
+
     private EntityManagerFactory emFactory
             = Persistence.createEntityManagerFactory("persistence");
 
     @Override
     public Venda mostrar(Long id) {
         EntityManager em = emFactory.createEntityManager();
-        
-        try{
+
+        try {
             Query query = em.createNamedQuery("Venda.relatorio");
             query.setParameter("id", id);
             Venda result = (Venda) query.getSingleResult();
-            
+
             return result;
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Venda> mostrarTodos() {
+        EntityManager em = emFactory.createEntityManager();
+        try{
+            Query query = em.createNamedQuery("Venda.relatorioAll");
+            List<Venda> v = query.getResultList();
+            return v;
+            
         }finally{
             em.close();
         }
     }
-    
+
 }

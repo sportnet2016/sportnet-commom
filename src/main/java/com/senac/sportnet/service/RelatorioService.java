@@ -32,4 +32,5 @@ import java.util.List;
  */
 public interface RelatorioService {
     public Venda mostrar(Long id);
+    public List<Venda> mostrarTodos();
 }

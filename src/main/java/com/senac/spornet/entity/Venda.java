@@ -62,7 +62,8 @@ import javax.persistence.TemporalType;
 //})
 @NamedQueries({
     @NamedQuery(name = "Venda.relatorio",
-            query= "SELECT v from Venda v INNER JOIN FETCH v.produtos Where v.IdVenda = :id")
+            query= "SELECT v from Venda v INNER JOIN FETCH v.produtos Where v.IdVenda = :id"),
+    @NamedQuery(name = "Venda.relatorioAll", query = "SELECT DISTINCT v from Venda v INNER JOIN FETCH v.produtos")
 })
 public class Venda implements Serializable {
 
