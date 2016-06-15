@@ -23,6 +23,7 @@
  */
 package com.senac.sportnet.servicejpa;
 
+import com.senac.spornet.entity.Produto;
 import com.senac.spornet.entity.Venda;
 import com.senac.sportnet.service.RelatorioService;
 import java.util.List;
@@ -61,12 +62,27 @@ public class RelatorioServiceJPA implements RelatorioService {
     @Override
     public List<Venda> mostrarTodos() {
         EntityManager em = emFactory.createEntityManager();
-        try{
+        try {
             Query query = em.createNamedQuery("Venda.relatorioAll");
             List<Venda> v = query.getResultList();
             return v;
-            
-        }finally{
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Produto> searchProducts(String name) {
+
+        EntityManager em = emFactory.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Produto.likeSearchProduct").setFirstResult(0).setMaxResults(50);
+            query.setParameter(1, '%'+name+'%');
+            List<Produto> products = query.getResultList();
+            return products;
+
+        } finally {
             em.close();
         }
     }

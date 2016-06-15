@@ -23,6 +23,7 @@
  */
 package com.senac.sportnet.service;
 
+import com.senac.spornet.entity.Produto;
 import com.senac.spornet.entity.Venda;
 import java.util.List;
 
@@ -33,4 +34,5 @@ import java.util.List;
 public interface RelatorioService {
     public Venda mostrar(Long id);
     public List<Venda> mostrarTodos();
+    public List<Produto> searchProducts(String name);
 }

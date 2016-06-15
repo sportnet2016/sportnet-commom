@@ -43,7 +43,12 @@ import javax.persistence.Transient;
             query = "SELECT DISTINCT p FROM Produto p "
             + "LEFT JOIN FETCH p.categorias "
             + "LEFT JOIN FETCH p.imagens "
-            + "WHERE p.id = :idProduto")
+            + "WHERE p.id = :idProduto"),
+    @NamedQuery(name = "Produto.likeSearchProduct",
+            query = "SELECT DISTINCT p FROM Produto p "
+            + "LEFT JOIN FETCH p.categorias "
+            + "LEFT JOIN FETCH p.imagens "
+            + "WHERE p.nome LIKE ?1")
 })
 public class Produto implements Serializable {
 
