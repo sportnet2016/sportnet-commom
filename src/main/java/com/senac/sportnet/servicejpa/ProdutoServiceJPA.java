@@ -188,7 +188,7 @@ public class ProdutoServiceJPA implements ProdutoService {
                 for (Produto p : result) {
                     int q = p.getQtdAtual() - produtosVendidos.getQuantidade();
                     p.setQtdAtual(q);
-                    total = total + p.getPreco();
+                    
                     proVenda.add(p);
                     em.merge(p);
                 }
