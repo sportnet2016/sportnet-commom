@@ -74,7 +74,7 @@ public class RelatorioServiceJPA implements RelatorioService {
 
     @Override
     public List<Produto> searchProducts(String name) {
-
+        name = name.substring(0,1).toUpperCase().concat(name.substring(1));
         EntityManager em = emFactory.createEntityManager();
         try {
             Query query = em.createNamedQuery("Produto.likeSearchProduct").setFirstResult(0).setMaxResults(50);
